@@ -216,7 +216,7 @@ Screenshots of testing results are included in the screenshots folder.
 ---
 
 ## API Testing Screenshots
+![image alt](https://github.com/ayushi-56/CODTECH-Task1/tree/7bbd2c79431984a198552bbee895e3c5d0e94c43/screenshots)
 
 
-https://github.com/ayushi-56/CODTECH-Task1/tree/7bbd2c79431984a198552bbee895e3c5d0e94c43/screenshots
 
