@@ -217,14 +217,6 @@ Screenshots of testing results are included in the screenshots folder.
 
 ## API Testing Screenshots
 
-### Get All Blogs
-![Get All Blogs](screenshots/get_all_blogs.png)
 
-### Create Blog
-![Create Blog](screenshots/create_blog.png)
+https://github.com/ayushi-56/CODTECH-Task1/tree/7bbd2c79431984a198552bbee895e3c5d0e94c43/screenshots
 
-### Update Blog
-![Update Blog](screenshots/update_blog.png)
-
-### Delete Blog
-![Delete Blog](screenshots/delete_blog.png)
