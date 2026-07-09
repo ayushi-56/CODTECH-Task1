@@ -1,9 +1,13 @@
 
 
 Name: AYUSHI KUSHWAHA
+
 Company: CODTECH IT SOLUTIONS
+
 Domain: Backend Web Development
+
 Duration: July to August 2026
+
 Mentor: NEELA SANTHOSH KUMAR
 
 # RESTful Blog API using Flask
