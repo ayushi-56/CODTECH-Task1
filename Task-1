@@ -1,0 +1,113 @@
+/*A Flask-based RESTful Blog API that performs CRUD operations
+for managing blog posts using JSON responses.*/
+
+
+from flask import Flask, request, jsonify
+
+# Create a Flask application
+app = Flask(__name__)
+
+# Temporary storage for blog data (stored in memory)
+blogs = [
+    {
+        "id": 1,
+        "title": "My First Blog",
+        "content": "Welcome to my Blog API!"
+    }
+]
+
+# -------------------- Home Route --------------------
+# Displays a welcome message when the home URL is accessed
+@app.route("/")
+def home():
+    return "Welcome to My Blog API!"
+
+
+# -------------------- Get All Blogs --------------------
+# Returns the complete list of blogs
+@app.route("/blogs", methods=["GET"])
+def get_blogs():
+    return jsonify(blogs)
+
+
+# -------------------- Create a New Blog --------------------
+# Accepts blog data in JSON format and adds it to the list
+@app.route("/blogs", methods=["POST"])
+def create_blog():
+    # Read JSON data sent in the request body
+    data = request.get_json()
+
+    # Create a new blog with a unique ID
+    new_blog = {
+        "id": len(blogs) + 1,
+        "title": data["title"],
+        "content": data["content"]
+    }
+
+    # Add the new blog to the list
+    blogs.append(new_blog)
+
+    # Return the newly created blog with HTTP status 201 (Created)
+    return jsonify(new_blog), 201
+
+
+# -------------------- Get Blog by ID --------------------
+# Returns a specific blog using its ID
+@app.route("/blogs/<int:id>", methods=["GET"])
+def get_blog(id):
+
+    # Search for the blog with the given ID
+    for blog in blogs:
+        if blog["id"] == id:
+            return jsonify(blog)
+
+    # Return an error if the blog is not found
+    return jsonify({"message": "Blog not found"}), 404
+
+
+# -------------------- Update Blog --------------------
+# Updates the title and content of an existing blog
+@app.route("/blogs/<int:id>", methods=["PUT"])
+def update_blog(id):
+
+    # Read updated data from the request body
+    data = request.get_json()
+
+    # Search for the blog to update
+    for blog in blogs:
+        if blog["id"] == id:
+
+            # Update blog details
+            blog["title"] = data["title"]
+            blog["content"] = data["content"]
+
+            # Return the updated blog
+            return jsonify(blog)
+
+    # Return an error if the blog is not found
+    return jsonify({"message": "Blog not found"}), 404
+
+
+# -------------------- Delete Blog --------------------
+# Deletes a blog using its ID
+@app.route("/blogs/<int:id>", methods=["DELETE"])
+def delete_blog(id):
+
+    # Search for the blog to delete
+    for blog in blogs:
+        if blog["id"] == id:
+
+            # Remove the blog from the list
+            blogs.remove(blog)
+
+            # Return success message
+            return jsonify({"message": "Blog deleted successfully"})
+
+    # Return an error if the blog is not found
+    return jsonify({"message": "Blog not found"}), 404
+
+
+# -------------------- Run the Application --------------------
+# Starts the Flask development server
+if __name__ == "__main__":
+    app.run(debug=True)
